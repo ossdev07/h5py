@@ -35,7 +35,19 @@ matrix:
       os: linux-ppc64le
 
     # Builds the API docs
-    - python: 3.7
+    - arch: amd64
+      python: 3.7
+      env:
+        - TOXENV=apidocs
+        - HDF5_VERSION=1.10.5
+        - HDF5_DIR=$HDF5_CACHE_DIR/$HDF5_VERSION
+      script:
+        - tox
+        - pip install doctr
+        - doctr deploy . --built-docs docs_api/_build/html
+        
+    - arch: arm64
+      python: 3.7
       env:
         - TOXENV=apidocs
         - HDF5_VERSION=1.10.5
@@ -47,7 +59,22 @@ matrix:
 
     # MPI tests
     # TODO: We should test with newer versions of HDF5
-    - python: 3.6
+    - arch: amd64
+      python: 3.6
+      env:
+      - TOXENV=py36-test-mindeps-mpi4py
+      - CC="mpicc"
+      - HDF5_MPI="ON"
+      - H5PY_ENFORCE_COVERAGE=yes
+      addons:
+        apt:
+          packages:
+            - openmpi-bin         # 1.6.5 based on trusty
+            - libopenmpi-dev
+            - libhdf5-openmpi-dev # 1.8.11 based on trusty
+    
+    - arch: arm64
+      python: 3.6
       env:
       - TOXENV=py36-test-mindeps-mpi4py
       - CC="mpicc"
