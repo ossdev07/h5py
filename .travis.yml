@@ -26,14 +26,22 @@ matrix:
     # needed to work around https://github.com/travis-ci/travis-ci/issues/4794
     # TODO: We should see if we can replace this with installing python via pyenv # based on toxenv
     # Test on ppc64le
-    - python: 3.7
+    - arch: amd64
+      python: 3.7
       env:
       - TOXENV=py37-test-deps
       - HDF5_VERSION=1.10.5
       - HDF5_DIR=$HDF5_CACHE_DIR/$HDF5_VERSION
       - H5PY_ENFORCE_COVERAGE=yes
       os: linux-ppc64le
-
+    - arch: arm64
+      python: 3.7
+      env:
+      - TOXENV=py37-test-deps
+      - HDF5_VERSION=1.10.5
+      - HDF5_DIR=$HDF5_CACHE_DIR/$HDF5_VERSION
+      - H5PY_ENFORCE_COVERAGE=yes
+      os: linux
     # Builds the API docs
     - arch: amd64
       python: 3.7
