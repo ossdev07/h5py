@@ -117,6 +117,7 @@ before_install:
 
 install:
   - pip install tox codecov
+  - python setup.py install
   - ci/travis/get_hdf5_if_needed.sh
 script:
   - tox
