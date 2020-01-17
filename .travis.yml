@@ -91,7 +91,7 @@ matrix:
       addons:
         apt:
           packages:
-            - openmpi-bin         # 1.6.5 based on trusty
+            - openmpi-bin         # 1.6.5 based on  trusty
             - libopenmpi-dev
             - libhdf5-openmpi-dev # 1.8.11 based on trusty
 
