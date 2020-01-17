@@ -41,7 +41,7 @@ matrix:
       - HDF5_VERSION=1.10.5
       - HDF5_DIR=$HDF5_CACHE_DIR/$HDF5_VERSION
       - H5PY_ENFORCE_COVERAGE=yes
-      os: linux
+      os: linux-ppc64le
     # Builds the API docs
     - arch: amd64
       python: 3.7
